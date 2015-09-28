@@ -4,7 +4,7 @@
 
 let Test = require('./test');
 
-let myTest = new Test(1, "Jeremy");
+let myTest = new Test(1, "Jérémy");
 
 console.log(myTest);
 myTest.sayHello();
