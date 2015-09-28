@@ -13,9 +13,16 @@ Date : 07/05/2015
 
 */
 
-@import (less) "variables.less";
-@import (less) "util.less";
 
-body {
-  background: @color1;
-}
+// Pre-styling (resets, normalizers, etc.)
+@import (less) "res/normalize.less";
+@import (less) "res/postnormalize.less";
+@import (less) "res/lesshat.less";
+
+// Settings and usefull classes
+@import (less) "bases/variables.less";
+@import (less) "bases/fonts.less";
+@import (less) "bases/util.less";
+
+// Skin by parts
+@import (less) "blocks/global.less";
