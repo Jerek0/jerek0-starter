@@ -10,7 +10,8 @@ var gulp = require('gulp'),
     handleErrors = require('../util/handleErrors'),
     minifyCSS = require('gulp-minify-css'),
     concatCss = require('gulp-concat-css'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    postcss = require('gulp-postcss');
 
 gulp.task('lessClean', function() {
     return gulp.src(config.dest, {read: false})
@@ -26,6 +27,7 @@ gulp.task('less', ['lessClean'], function() {
             paths: [ path.join(config.src, 'less', 'includes') ]
         }))
         .pipe(concatCss("min.css"))
+        .pipe(postcss([ require('autoprefixer')]))
         .pipe(minifyCSS("min.css"))
         .pipe(gulp.dest(config.dest))
         .pipe(browserSync.reload({
