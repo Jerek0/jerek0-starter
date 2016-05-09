@@ -3,4 +3,6 @@
  */
 var gulp = require('gulp');
 
-gulp.task('default', ['scripts', 'less', 'images', 'fonts', 'markup', 'watch']);
+gulp.task('dev', ['scripts:dev', 'less', 'images', 'fonts', 'markup', 'watch:dev']);
+gulp.task('prod', ['scripts:prod', 'less', 'images', 'fonts', 'markup', 'watch:prod']);
+gulp.task('default', ['dev']);

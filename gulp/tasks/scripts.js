@@ -16,15 +16,26 @@ gulp.task('cleanJs', function() {
         .pipe(clean());
 });
 
-gulp.task('scripts', ['cleanJs'], function() {
+gulp.task('scripts:dev', ['cleanJs'], function() {
   return browserify({ entries: config.scripts.main, debug: false })
     .transform(babelify.configure({"presets": ["es2015"]}))
     .bundle().on('error', handleErrors)
     .pipe(source('min.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(uglify())
     .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest(config.scripts.dest))
+    .pipe(browserSync.reload({stream:true}));
+});
+
+
+gulp.task('scripts:prod', ['cleanJs'], function() {
+  return browserify({ entries: config.scripts.main, debug: false })
+    .transform(babelify.configure({"presets": ["es2015"]}))
+    .bundle().on('error', handleErrors)
+    .pipe(source('min.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest(config.scripts.dest))
     .pipe(browserSync.reload({stream:true}));
 });
