@@ -23,6 +23,10 @@ module.exports = {
         src: src + "/htdocs/**",
         dest: dest
     },
+    fonts: {
+        src: src + "/fonts/**",
+        dest: dest + "/fonts"
+    },
     browserify: {
         // A separate bundle will be generated for each
         // bundle config in the list below
