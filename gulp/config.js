@@ -27,16 +27,10 @@ module.exports = {
         src: src + "/fonts/**",
         dest: dest + "/fonts"
     },
-    browserify: {
-        // A separate bundle will be generated for each
-        // bundle config in the list below
-        bundleConfigs: [{
-            entries: src + '/js/main.js',
-            dest: dest + '/js',
-            outputName: 'min.js',
-            // list of modules to make require-able externally
-            require: ['jquery', 'backbone/node_modules/underscore']
-        }]
+    scripts: {
+        main: src +"/js/main.js",
+        src: src + "/js/**",
+        dest: dest + "/js"
     },
     browserSync: {
         server: {
