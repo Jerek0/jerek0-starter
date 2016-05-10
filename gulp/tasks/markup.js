@@ -1,12 +1,12 @@
 /**
  * Created by jerek0 on 06/05/2015.
  */
-var gulp = require('gulp');
-var config = require('../config').markup;
-var browserSync  = require('browser-sync');
+import gulp from 'gulp';
+import config from '../config';
+import browserSync from 'browser-sync';
 
-gulp.task('markup', function() {
-    return gulp.src(config.src)
-        .pipe(gulp.dest(config.dest))
+gulp.task('markup', () => {
+    return gulp.src(config.markup.src)
+        .pipe(gulp.dest(config.markup.dest))
         .pipe(browserSync.reload({stream:true}));
 });

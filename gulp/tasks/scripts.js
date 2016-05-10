@@ -1,24 +1,24 @@
-var config = require('../config');
-var gulp = require('gulp');
-var babelify = require('babelify');
-var browserify = require('browserify');
-var uglify = require('gulp-uglify');
-var gutil = require('gulp-util');
-var sourcemaps = require('gulp-sourcemaps');
-var buffer = require('vinyl-buffer');
-var source = require('vinyl-source-stream');
-var clean = require('gulp-clean');
-var browserSync  = require('browser-sync');
-var handleErrors = require('../util/handleErrors');
+import config from'../config';
+import gulp from'gulp';
+import babelify from'babelify';
+import browserify from'browserify';
+import uglify from'gulp-uglify';
+import gutil from'gulp-util';
+import sourcemaps from'gulp-sourcemaps';
+import buffer from'vinyl-buffer';
+import source from'vinyl-source-stream';
+import clean from'gulp-clean';
+import browserSync from'browser-sync';
+import handleErrors from'../util/handleErrors';
 
-gulp.task('cleanJs', function() {
+gulp.task('cleanJs', () => {
     gulp.src(config.scripts.dest, {read: false})
         .pipe(clean());
 });
 
-gulp.task('scripts:dev', ['cleanJs'], function() {
+gulp.task('scripts:dev', ['cleanJs'], () => {
   return browserify({ entries: config.scripts.main, debug: false })
-    .transform(babelify.configure({"presets": ["es2015"]}))
+    .transform(babelify.configure())
     .bundle().on('error', handleErrors)
     .pipe(source('min.js'))
     .pipe(buffer())
@@ -29,9 +29,9 @@ gulp.task('scripts:dev', ['cleanJs'], function() {
 });
 
 
-gulp.task('scripts:prod', ['cleanJs'], function() {
+gulp.task('scripts:prod', ['cleanJs'], () => {
   return browserify({ entries: config.scripts.main, debug: false })
-    .transform(babelify.configure({"presets": ["es2015"]}))
+    .transform(babelify.configure())
     .bundle().on('error', handleErrors)
     .pipe(source('min.js'))
     .pipe(buffer())

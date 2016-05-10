@@ -1,16 +1,16 @@
 /**
  * Created by jerek0 on 06/05/2015.
  */
-var changed    = require('gulp-changed');
-var gulp       = require('gulp');
-var imagemin   = require('gulp-imagemin');
-var config     = require('../config').images;
-var browserSync  = require('browser-sync');
+import changed from 'gulp-changed';
+import gulp from 'gulp';
+import imagemin from 'gulp-imagemin';
+import config from '../config';
+import browserSync from 'browser-sync';
 
-gulp.task('images', function() {
-    return gulp.src(config.src)
-        .pipe(changed(config.dest)) // Ignore unchanged files
+gulp.task('images', () => {
+    return gulp.src(config.images.src)
+        .pipe(changed(config.images.dest)) // Ignore unchanged files
         .pipe(imagemin()) // Optimize
-        .pipe(gulp.dest(config.dest))
+        .pipe(gulp.dest(config.images.dest))
         .pipe(browserSync.reload({stream:true}));
 });

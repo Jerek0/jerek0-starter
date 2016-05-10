@@ -2,8 +2,8 @@
  * Created by jerek0 on 06/05/2015.
  */
 
-var dest = "./build";
-var src = './src';
+const dest = "./build";
+const src = './src';
 
 module.exports = {
     global: {

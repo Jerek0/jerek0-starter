@@ -2,11 +2,14 @@
 
 ## TODOs
 
-* Add ES6 support for gulp
+* Add critical CSS task
 * Add Barba.js
 * Add imagepack
 * Add node server w/ Express
 * Add templating engine (maybe jade)
+* Add gulp help
+* Separate dependencies and dev-dependencies
+* Improve gulp config file with better selection of values to configure. Most of the paths won't ever change so they don't belong here.
 
 ## How to
 Clone the repo using the command :

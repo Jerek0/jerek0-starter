@@ -1,8 +1,8 @@
-var notify = require("gulp-notify");
+import notify from "gulp-notify";
 
-module.exports = function() {
+module.exports = () => {
 
-  var args = Array.prototype.slice.call(arguments);
+  let args = Array.prototype.slice.call(arguments);
 
   // Send error to notification center with gulp-notify
   notify.onError({
