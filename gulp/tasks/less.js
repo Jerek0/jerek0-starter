@@ -9,9 +9,10 @@ import path from 'path';
 import plumber from 'gulp-plumber';
 import handleErrors from '../util/handleErrors';
 import minifyCSS from 'gulp-minify-css';
-import concatCss from 'gulp-concat-css';
 import browserSync from 'browser-sync';
 import postcss from 'gulp-postcss';
+import sourcemaps from 'gulp-sourcemaps';
+import rename from 'gulp-rename';
 
 gulp.task('lessClean', () => {
     return gulp.src(config.less.dest, {read: false})
@@ -20,15 +21,14 @@ gulp.task('lessClean', () => {
 
 gulp.task('less', ['lessClean'], () => {
     return gulp.src(config.less.main)
-        .pipe(plumber({
-            errorHandler: handleErrors
-        }))
+        .on('error', function(e) { console.log(e); })
+        .pipe(sourcemaps.init())
         .pipe(less({
             paths: [ path.join(config.less.src, 'less', 'includes') ]
         }))
-        .pipe(concatCss("min.css"))
-        .pipe(postcss([ require('autoprefixer')]))
-        .pipe(minifyCSS("min.css"))
+        .pipe(minifyCSS())
+        .pipe(sourcemaps.write())
+        .pipe(rename({basename: 'min'}))
         .pipe(gulp.dest(config.less.dest))
         .pipe(browserSync.reload({
             stream: true
